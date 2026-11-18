@@ -1,0 +1,304 @@
+import java.util.Scanner;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+       
+        String[] names = {"Cozy Nights Monarch", "Restonic Barbados", "Sealy Phuket"};
+ )
+        int[][] sales = new int[3][3];
+
+        
+        for (int p = 0; p < names.length; p++) {
+            for (int m = 0; m < 3; m++) {
+                System.out.print("Enter number of sales for month " + (m + 1)
+                        + " for " + names[p] + " mattress: ");
+                sales[p][m] = input.nextInt();
+            }
+            System.out.println();   // blank line between products
+        }
+
+        
+        Product product = new Product(names, sales);
+        PrintProduct printer = new PrintProduct(product);
+
+       
+        System.out.println();
+        System.out.println("PRODUCT SALES REPORT - 2026");
+        System.out.println();
+        System.out.println("*************************************************");
+        printer.PrintTotalProductSales();
+        printer.PrintAverageProductSales();
+        printer.PrintMostPopularProduct();
+
+        input.close();
+    }
+}
+package salesreport;
+
+.
+public interface IProduct {
+    int GetTotalProductsSold();
+    double GetAverageProductSold();
+    String GetMostPopularProduct();
+}
+package salesreport;
+
+
+public class Product implements IProduct {
+
+    
+    private String[] productNames;
+
+  ])
+    private int[][] sales;
+]
+    public Product(String[] productNames, int[][] sales) {
+        this.productNames = productNames;
+        this.sales = sales;
+    }
+]
+    Override
+    public int GetTotalProductsSold() {
+        int total = 0;
+        for (int p = 0; p < sales.length; p++) {
+            for (int m = 0; m < sales[p].length; m++) { 
+                total = total + sales[p][m];
+            }
+        }
+        return total;
+    }
+
+
+    Override
+    public double GetAverageProductSold() {
+        int count = 0;
+        for (int p = 0; p < sales.length; p++) {
+            count = count + sales[p].length;
+        }
+        if (count == 0) {
+            return 0;  
+        }
+        return (double) GetTotalProductsSold() / count;   
+    }
+
+    
+    Override
+    public String GetMostPopularProduct() {
+        int highest = -1;
+        String bestName = "";
+        for (int p = 0; p < sales.length; p++) {
+            for (int m = 0; m < sales[p].length; m++) {
+                if (sales[p][m] > highest) {     
+                    highest = sales[p][m];
+                    bestName = productNames[p]; 
+                }
+            }
+        }
+        return bestName + "(" + highest + ")";  
+    }
+}
+package salesreport;
+
+
+public class PrintProduct {
+
+    private IProduct product;
+
+    public PrintProduct(IProduct product) {
+        this.product = product;
+    }
+
+    public void PrintTotalProductSales() {
+        System.out.println("TOTAL PRODUCT SALES: " + product.GetTotalProductsSold());
+    }
+
+    public void PrintAverageProductSales() {
+
+        System.out.println("AVERAGE PRODUCT SALES: " + (int) product.GetAverageProductSold());
+    }
+
+    public void PrintMostPopularProduct() {
+        System.out.println("MOST POPULAR PRODUCT: " + product.GetMostPopularProduct());
+    }
+}
+package salesreport.tests;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import salesreport.Product;public class ProductTest {
+
+    private Product CreateSampleProduct() {
+        String[] names = {"Cozy Nights Monarch", "Restonic Barbados", "Sealy Phuket"};
+        int[][] sales = {
+            {25, 18, 20},
+            {15, 10, 12},
+            {18, 15, 20}
+        };
+        return new Product(names, sales);
+    }
+
+  
+    
+    public void GetTotalProductSales_WithValidData_ReturnsCorrectValue() {
+        Product product = CreateSampleProduct();     
+        int actual = product.GetTotalProductsSold();  
+        assertEquals(153, actual);                    
+ main publicclass;
+    }
+
+import java.util.Scanner;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+       
+        String[] names = {"Cozy Nights Monarch", "Restonic Barbados", "Sealy Phuket"};
+ )
+        int[][] sales = new int[3][3];
+
+        
+        for (int p = 0; p < names.length; p++) {
+            for (int m = 0; m < 3; m++) {
+                System.out.print("Enter number of sales for month " + (m + 1)
+                        + " for " + names[p] + " mattress: ");
+                sales[p][m] = input.nextInt();
+            }
+            System.out.println();   // blank line between products
+        }
+
+        
+        Product product = new Product(names, sales);
+        PrintProduct printer = new PrintProduct(product);
+
+       
+        System.out.println();
+        System.out.println("PRODUCT SALES REPORT - 2026");
+        System.out.println();
+        System.out.println("*************************************************");
+        printer.PrintTotalProductSales();
+        printer.PrintAverageProductSales();
+        printer.PrintMostPopularProduct();
+
+        input.close();
+    }
+}
+package salesreport;
+
+.
+public interface IProduct {
+    int GetTotalProductsSold();
+    double GetAverageProductSold();
+    String GetMostPopularProduct();
+}
+package salesreport;
+
+
+public class Product implements IProduct {
+
+    
+    private String[] productNames;
+
+  ])
+    private int[][] sales;
+]
+    public Product(String[] productNames, int[][] sales) {
+        this.productNames = productNames;
+        this.sales = sales;
+    }
+]
+    Override
+    public int GetTotalProductsSold() {
+        int total = 0;
+        for (int p = 0; p < sales.length; p++) {
+            for (int m = 0; m < sales[p].length; m++) { 
+                total = total + sales[p][m];
+            }
+        }
+        return total;
+    }
+
+
+    Override
+    public double GetAverageProductSold() {
+        int count = 0;
+        for (int p = 0; p < sales.length; p++) {
+            count = count + sales[p].length;
+        }
+        if (count == 0) {
+            return 0;  
+        }
+        return (double) GetTotalProductsSold() / count;   
+    }
+
+    
+    Override
+    public String GetMostPopularProduct() {
+        int highest = -1;
+        String bestName = "";
+        for (int p = 0; p < sales.length; p++) {
+            for (int m = 0; m < sales[p].length; m++) {
+                if (sales[p][m] > highest) {     
+                    highest = sales[p][m];
+                    bestName = productNames[p]; 
+                }
+            }
+        }
+        return bestName + "(" + highest + ")";  
+    }
+}
+package salesreport;
+
+
+public class PrintProduct {
+
+    private IProduct product;
+
+    public PrintProduct(IProduct product) {
+        this.product = product;
+    }
+
+    public void PrintTotalProductSales() {
+        System.out.println("TOTAL PRODUCT SALES: " + product.GetTotalProductsSold());
+    }
+
+    public void PrintAverageProductSales() {
+
+        System.out.println("AVERAGE PRODUCT SALES: " + (int) product.GetAverageProductSold());
+    }
+
+    public void PrintMostPopularProduct() {
+        System.out.println("MOST POPULAR PRODUCT: " + product.GetMostPopularProduct());
+    }
+}
+package salesreport.tests;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import salesreport.Product;public class ProductTest {
+
+    private Product CreateSampleProduct() {
+        String[] names = {"Cozy Nights Monarch", "Restonic Barbados", "Sealy Phuket"};
+        int[][] sales = {
+            {25, 18, 20},
+            {15, 10, 12},
+            {18, 15, 20}
+        };
+        return new Product(names, sales);
+    }
+
+  
+    
+    public void GetTotalProductSales_WithValidData_ReturnsCorrectValue() {
+        Product product = CreateSampleProduct();     
+        int actual = product.GetTotalProductsSold();  
+        assertEquals(153, actual);                    
+ main publicclass;
+    }
+
